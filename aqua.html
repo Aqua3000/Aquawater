@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="background">
+        <div class="card">
+            <h1>Aquaesphere</h1>
+            <div class="btn-parent">
+                <label for="login" class="login">
+                    <p>Login</p>
+                </label>
+                <label for="register" class="register">
+                    <p>Register</p>
+                </label>
+                <input type="radio" name="login-register" id="login" onclick="login()">
+                <input type="radio" name="login-register" id="register" onclick="register()">
+                <div class="btn"></div>
+            </div>
+            <div class="parent_">
+                <div class="form">
+                    <form action="" class="login-form" onsubmit="return loginUser()">
+                        <input type="text" name="user-id" id="login-user-id" required placeholder="Username"
+                            class="input-field">
+                        <input type="password" name="password" id="login-password" placeholder="Password" class="input-field">
+                        <div class="parent2">
+                            <label for="keep-me-signin"><input type="checkbox" name="" id="keep-me-signin">keep me
+                                signin</label>
+                            <a href="">Forgot your password?</a>
+                        </div>
+                        <p id="login-rbtext"></p>
+                        <button type="submit" style="margin-right: 5px !important;">Login</button>
+                    </form>
+                </div>
+                <div class="form ">
+                    <form action="" class="login-form" onsubmit="return registerUser()">
+                        <input type="text" name="user-id" id="register-user-id" required placeholder="Username"
+                            class="input-field">
+                        <input type="email" name="email" id="register-emailUser" required placeholder="Email"
+                            class="input-field">
+                        <input type="password" name="password" id="register-password" placeholder="Password" class="input-field">
+                        <div class="parent2">
+                        </div>
+                        <p id="register-rbtext"></p>
+                        <button type="submit" style="margin-right: 5px !important;">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script>
+let parent = document.querySelector('.parent_');
+let registeredUser = {};
+
+function login() {
+    parent.classList.add('moveLogin');
+    parent.classList.remove('moveRegister');
+}
+
+function register() {
+    parent.classList.remove('moveLogin');
+    parent.classList.add('moveRegister');
+}
+
+function loginUser() {
+    let username = document.getElementById('login-user-id').value;
+    let password = document.getElementById('login-password').value;
+
+    if (registeredUser && registeredUser.username === username && registeredUser.password === password) {
+        window.location.href = 'aquahome.html';
+        return false; 
+    } else {
+        alert("Invalid username or password");
+        return false;
+    }
+}
+
+function registerUser() {
+    let username = document.getElementById('register-user-id').value;
+    let email = document.getElementById('register-emailUser').value;
+    let password = document.getElementById('register-password').value;
+
+    registeredUser = {
+        username: username,
+        email: email,
+        password: password
+    };
+    alert("Registration successful. You can now log in.");
+    return false; 
+}
+</script>
+</html>
